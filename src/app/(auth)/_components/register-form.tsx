@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,14 +12,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { registerSchema } from "@/schemas/register.schema";
+import { RegisterRequest, registerSchema } from "@/schemas/register.schema";
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const router = useRouter();
-  const form = useForm<z.infer<typeof registerSchema>>({
+  const form = useForm<RegisterRequest>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       username: "",
@@ -29,7 +28,7 @@ export default function RegisterForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof registerSchema>) {
+  async function onSubmit(values: RegisterRequest) {
     try {
       await axios.post("/api/auth/register", values);
       toast({ title: "Successfully registered!" });

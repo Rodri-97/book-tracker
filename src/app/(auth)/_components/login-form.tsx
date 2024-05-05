@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,14 +14,14 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { loginSchema } from "@/schemas/login.schema";
+import { LoginRequest, loginSchema } from "@/schemas/login.schema";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function LoginForm() {
   const router = useRouter();
   const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof loginSchema>>({
+  const form = useForm<LoginRequest>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       username: "",
@@ -30,7 +29,7 @@ export default function LoginForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
+  async function onSubmit(values: LoginRequest) {
     try {
       await axios.post("/api/auth/login", values);
       toast({ title: "Successfully logged in!" });

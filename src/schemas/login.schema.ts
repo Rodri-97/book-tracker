@@ -8,3 +8,5 @@ export const loginSchema = z.object({
     .string()
     .min(8, "Password is too short - should be 8 chars minimum"),
 });
+
+export type LoginRequest = z.infer<typeof loginSchema>;
