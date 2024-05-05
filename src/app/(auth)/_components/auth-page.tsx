@@ -9,7 +9,7 @@ export default function AuthPage({
   registerOrLogin,
 }: RegisterOrLoginInterface) {
   return (
-    <div className="bg-white container relative flex-col items-center justify-center max-h-screen rounded-lg md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div className="py-12 bg-white container relative flex-col items-center justify-center max-h-screen rounded-lg md:grid lg:max-w-none lg:grid-cols-2 lg:px-0 lg:p-0">
       <div className="relative hidden h-full flex-col bg-muted text-white dark:border-r lg:flex">
         <img
           className="h-full w-full rounded-lg"
@@ -19,7 +19,7 @@ export default function AuthPage({
       </div>
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <div className="mt-16 flex flex-col space-y-2 text-center lg:mt-0">
+          <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
               {registerOrLogin === "register" ? "Register" : "Login"}
             </h1>
