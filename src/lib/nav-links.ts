@@ -4,16 +4,21 @@ export type NavLinkProp = {
   text: string;
 };
 
-export const unauthedNavLinks = [
+const commonNavLinks: NavLinkProp[] = [
   { id: 1, href: "/", text: "Home" },
-  { id: 2, href: "/login", text: "Login" },
-  { id: 3, href: "/register", text: "Register" },
+  { id: 2, href: "/search", text: "Search" },
 ];
 
-export const authedNavLinks = [
-  { id: 1, href: "/", text: "Home" },
-  { id: 2, href: "#", text: "Bookshelves" },
-  { id: 3, href: "#", text: "Reviews" },
-  { id: 4, href: "#", text: "Profile" },
-  { id: 5, href: "#", text: "Statistics" },
+export const unauthedNavLinks: NavLinkProp[] = [
+  ...commonNavLinks,
+  { id: 3, href: "/login", text: "Login" },
+  { id: 4, href: "/register", text: "Register" },
+];
+
+export const authedNavLinks: NavLinkProp[] = [
+  ...commonNavLinks,
+  { id: 3, href: "#", text: "Bookshelves" },
+  { id: 4, href: "#", text: "Reviews" },
+  { id: 5, href: "#", text: "Profile" },
+  { id: 6, href: "#", text: "Statistics" },
 ];
