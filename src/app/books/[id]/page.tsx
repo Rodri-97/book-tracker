@@ -7,15 +7,13 @@ export default async function BookDetails({
 }: {
   params: { id: string };
 }) {
-  const res = await axios.get(
-    `https://www.googleapis.com/books/v1/volumes/${params.id}`
-  );
+  const res = await axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${params.id}`)
+    .catch(() => null);
 
-  if (res.status !== 200 || !res.data) {
-    return <div>Book not found.</div>;
-  }
+  const book: GoogleAPIBook | null = res?.data;
 
-  const book: GoogleAPIBook = res.data;
+  if (!book) return <div>Book not found.</div>;
 
   const { title, authors, description } = book.volumeInfo;
   const image = book.volumeInfo.imageLinks
