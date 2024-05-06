@@ -25,9 +25,9 @@ export default async function BookDetails({
   return (
     <div>
       <article className="bg-white rounded-lg p-6 flex flex-col justify-center items-center gap-12">
-        <section className="flex flex-row justify-center items-center gap-6">
+        <section className="flex flex-col justify-center items-center gap-6 lg:flex-row">
           <img src={image} className="w-60 h-72 rounded-lg" alt={title} />
-          <div>
+          <div className="flex flex-col text-center gap-6 lg:text-left lg:gap-2">
             <h1 className="font-bold text-2xl">{title}</h1>
             <h2 className="text-xl text-slate-700">{authors?.join(", ")}</h2>
           </div>
