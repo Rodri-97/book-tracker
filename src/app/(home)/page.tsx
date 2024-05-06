@@ -86,7 +86,7 @@ export default function Home() {
           your liking! Simply start by using the search feature.
         </p>
       </article>
-      <article className="flex flex-col justify-center items-center bg-white p-10 w-full gap-8">
+      <article className="flex flex-col justify-center items-center rounded-lg bg-white p-10 w-full gap-8">
         <section className="flex flex-col justify-between items-center w-full gap-4 lg:gap-0 lg:flex-row">
           <h2 className="text-2xl font-semibold">Some Classics</h2>
           <Link href="/search">
