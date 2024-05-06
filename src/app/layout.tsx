@@ -11,9 +11,6 @@ export const metadata: Metadata = {
   title: "LitQuest",
   description:
     "Book tracker web app built with TypeScript, Next.js, and PostgreSQL.",
-  icons: {
-    icon: "./logo.png",
-  },
 };
 
 export default async function RootLayout({
