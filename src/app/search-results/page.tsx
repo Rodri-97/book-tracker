@@ -65,7 +65,7 @@ export default async function SearchResults({
 
   const titleSpan = (
     <span>
-      title "<span className="text-blue-700">{title}</span>"
+      title &quot;<span className="text-blue-700">{title}</span>&quot;
     </span>
   );
 
@@ -73,7 +73,7 @@ export default async function SearchResults({
 
   const authorSpan = (
     <span>
-      author "<span className="text-blue-700">{author}</span>"
+      author &quot;<span className="text-blue-700">{author}</span>&quot;
     </span>
   );
 
