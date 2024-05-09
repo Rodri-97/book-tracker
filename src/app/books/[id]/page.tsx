@@ -1,6 +1,7 @@
 import { GoogleAPIBook } from "@/lib/interfaces";
 import axios from "axios";
 import DOMPurify from "isomorphic-dompurify";
+import UserButtonsContainer from "./_components/user-buttons-container";
 
 export default async function BookDetails({
   params,
@@ -30,6 +31,7 @@ export default async function BookDetails({
             <h2 className="text-xl text-slate-700">{authors?.join(", ")}</h2>
           </div>
         </section>
+        <UserButtonsContainer googleId={book.id} />
         <hr className="h-[2px] w-full bg-slate-300" />
         <section
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}

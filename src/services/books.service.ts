@@ -20,3 +20,11 @@ export async function addBook({
 
   return newBook;
 }
+
+export async function getUserBooks(userId: string) {
+  const userBooks = await db.book.findMany({
+    where: { userId },
+  });
+
+  return userBooks;
+}
