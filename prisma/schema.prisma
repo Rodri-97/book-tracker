@@ -13,12 +13,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum BookStatus {
+  TO_READ
+  CURRENTLY_READING
+  DID_NOT_FINISH
+  READ
+}
+
 model User {
   id             String @id
   username       String @unique
   hashedPassword String
 
   sessions Session[]
+  books    Book[]
 }
 
 model Session {
@@ -27,4 +35,18 @@ model Session {
   expiresAt DateTime
 
   user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+}
+
+model Book {
+  id        String     @id @default(uuid())
+  googleId  String
+  userId    String
+  user      User       @relation(references: [id], fields: [userId], onDelete: Cascade)
+  title     String
+  status    BookStatus @default(TO_READ)
+  rating    Int?
+  dateAdded DateTime   @default(now())
+  dateRead  DateTime?
+
+  @@unique([userId, googleId])
 }
