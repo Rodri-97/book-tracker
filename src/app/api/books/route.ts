@@ -1,7 +1,7 @@
 import { GoogleAPIBook } from "@/lib/interfaces";
 import { validateRequest } from "@/lib/utils.server";
 import { addBookSchema } from "@/schemas/books.schema";
-import { addBook } from "@/services/books.service";
+import { addBook, getUserBooks } from "@/services/books.service";
 import axios from "axios";
 import { z } from "zod";
 
@@ -22,6 +22,16 @@ export async function POST(request: Request) {
 
     if (!book) {
       return new Response("That book does not exist.", { status: 500 });
+    }
+
+    const userBooks = await getUserBooks(user.id);
+
+    const alreadyInBookshelves = userBooks.some(
+      (userBook) => userBook.googleId === googleId
+    );
+
+    if (alreadyInBookshelves) {
+      return new Response("You've already added that book.", { status: 403 });
     }
 
     await addBook({ googleId, userId: user.id, book });
