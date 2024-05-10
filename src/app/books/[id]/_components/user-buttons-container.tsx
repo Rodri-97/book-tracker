@@ -20,7 +20,7 @@ export default async function UserButtonsContainer({
   return (
     <>
       {bookInUserBookshelves ? (
-        <RemoveBookButton />
+        <RemoveBookButton googleId={googleId} />
       ) : (
         <AddBookButton googleId={googleId} />
       )}
