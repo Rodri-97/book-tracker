@@ -28,3 +28,27 @@ export async function getUserBooks(userId: string) {
 
   return userBooks;
 }
+
+export async function getBooksByIds({
+  googleId,
+  userId,
+}: {
+  googleId: string;
+  userId: string;
+}) {
+  const book = await db.book.findFirst({ where: { googleId, userId } });
+  return book;
+}
+
+export async function removeBook({
+  id,
+  googleId,
+  userId,
+}: {
+  id: string;
+  googleId: string;
+  userId: string;
+}) {
+  await db.book.delete({ where: { id, googleId, userId } });
+  return null;
+}
