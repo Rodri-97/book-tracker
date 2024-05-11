@@ -1,5 +1,5 @@
 import { validateRequest } from "@/lib/utils.server";
-import { getBooksByIds, removeBook } from "@/services/books.service";
+import { getBookByIds, removeBook } from "@/services/books.service";
 
 export async function DELETE(
   request: Request,
@@ -13,7 +13,7 @@ export async function DELETE(
     const googleId = params.id;
     const userId = user.id;
 
-    const book = await getBooksByIds({ googleId, userId });
+    const book = await getBookByIds({ googleId, userId });
 
     if (!book) return new Response("Book not found.", { status: 404 });
 

@@ -29,7 +29,7 @@ export async function getUserBooks(userId: string) {
   return userBooks;
 }
 
-export async function getBooksByIds({
+export async function getBookByIds({
   googleId,
   userId,
 }: {
