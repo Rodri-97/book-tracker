@@ -1,7 +1,7 @@
 import { validateRequest } from "@/lib/utils.server";
 import { getUserBooks } from "@/services/books.service";
-import { Book } from "@prisma/client";
 import { redirect } from "next/navigation";
+import BookshelvesContent from "./_components/bookshelves-content";
 
 export default async function Bookshelves() {
   const { user } = await validateRequest();
@@ -11,14 +11,8 @@ export default async function Bookshelves() {
   const books = await getUserBooks(user.id);
 
   return (
-    <div>
-      {books.map((book) => (
-        <BookCard book={book} key={book.id} />
-      ))}
-    </div>
+    <>
+      <BookshelvesContent books={books} />
+    </>
   );
-}
-
-function BookCard({ book }: { book: Book }) {
-  return <div>{book.title}</div>;
 }
