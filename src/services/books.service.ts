@@ -2,19 +2,27 @@ import { GoogleAPIBook } from "@/lib/interfaces";
 import db from "./db";
 
 export async function addBook({
-  googleId,
   userId,
-  book,
+  googleData,
 }: {
-  googleId: string;
   userId: string;
-  book: GoogleAPIBook;
+  googleData: GoogleAPIBook;
 }) {
+  const { id: googleId, volumeInfo } = googleData;
+
+  const { title, authors, imageLinks } = volumeInfo;
+
+  const formattedAuthors = authors ? authors : [];
+
+  const imageUrl = imageLinks?.thumbnail ? imageLinks.thumbnail : null;
+
   const newBook = await db.book.create({
     data: {
-      googleId,
       userId,
-      title: book.volumeInfo.title,
+      googleId,
+      title,
+      authors: formattedAuthors,
+      imageUrl,
     },
   });
 

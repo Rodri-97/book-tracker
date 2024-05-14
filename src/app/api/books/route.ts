@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       return new Response("You've already added that book.", { status: 403 });
     }
 
-    await addBook({ googleId, userId: user.id, book });
+    await addBook({ userId: user.id, googleData: book });
 
     return new Response("Book added successfully.", { status: 201 });
   } catch (error) {

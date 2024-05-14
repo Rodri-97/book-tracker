@@ -39,14 +39,17 @@ model Session {
 
 model Book {
   id        String     @id @default(uuid())
-  googleId  String
   userId    String
   user      User       @relation(references: [id], fields: [userId], onDelete: Cascade)
-  title     String
   status    BookStatus @default(TO_READ)
   rating    Int?
   dateAdded DateTime   @default(now())
   dateRead  DateTime?
+
+  googleId String
+  title    String
+  authors  String[]
+  imageUrl String?
 
   @@unique([userId, googleId])
 }
