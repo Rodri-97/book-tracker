@@ -4,6 +4,7 @@ import { Book } from "@prisma/client";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import BookStatus from "@/components/book-status";
 
 export default function BookshelvesContent({ books }: { books: Book[] }) {
   const [search, setSearch] = useState("");
@@ -99,6 +100,7 @@ function BookCard({ book }: { book: Book }) {
       <section className="w-[55%] p-2 flex flex-col gap-2">
         <h2 className="font-semibold">{book.title}</h2>
         <p>{book.authors.join(", ")}</p>
+        <BookStatus book={book} />
       </section>
     </article>
   );

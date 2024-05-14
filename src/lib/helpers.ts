@@ -15,3 +15,7 @@ export function getSearchResultsUrl(
 ): string {
   return `/search-results?title=${title}&author=${author}&page=${page}`;
 }
+
+export function capitalize(str: string): string {
+  return str[0].toUpperCase() + str.slice(1).toLowerCase();
+}
