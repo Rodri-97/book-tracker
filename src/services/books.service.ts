@@ -1,5 +1,6 @@
 import { GoogleAPIBook } from "@/lib/interfaces";
 import db from "./db";
+import { Book, BookStatus } from "@prisma/client";
 
 export async function addBook({
   userId,
@@ -59,4 +60,39 @@ export async function removeBook({
 }) {
   await db.book.delete({ where: { id, googleId, userId } });
   return null;
+}
+
+export async function updateBook({
+  book,
+  newStatus,
+  newRating,
+}: {
+  book: Book;
+  newStatus: BookStatus | undefined;
+  newRating: number | undefined;
+}) {
+  let updatedBook;
+
+  if (newStatus) {
+    if (newStatus === "READ") {
+      updatedBook = await db.book.update({
+        where: { id: book.id },
+        data: { status: newStatus, dateRead: new Date() },
+      });
+    } else {
+      updatedBook = await db.book.update({
+        where: { id: book.id },
+        data: { status: newStatus, dateRead: null, rating: null },
+      });
+    }
+  }
+
+  if (newRating && book.status === "READ") {
+    updatedBook = await db.book.update({
+      where: { id: book.id },
+      data: { rating: newRating },
+    });
+  }
+
+  return updatedBook;
 }

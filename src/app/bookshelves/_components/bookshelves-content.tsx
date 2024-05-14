@@ -49,20 +49,22 @@ export default function BookshelvesContent({ books }: { books: Book[] }) {
         </div>
       </div>
 
-      {books.map((book) => {
-        const includesFilterStatus =
-          selectedFilterButton === "All" ||
-          selectedFilterButton.toUpperCase().split(" ").join("_") ===
-            book.status;
+      <div className="flex flex-col gap-4">
+        {books.map((book) => {
+          const includesFilterStatus =
+            selectedFilterButton === "All" ||
+            selectedFilterButton.toUpperCase().split(" ").join("_") ===
+              book.status;
 
-        const includesSearchQuery = book.title
-          .toLowerCase()
-          .includes(search.toLowerCase());
+          const includesSearchQuery = book.title
+            .toLowerCase()
+            .includes(search.toLowerCase());
 
-        if (includesFilterStatus && includesSearchQuery) {
-          return <BookCard book={book} key={book.id} />;
-        }
-      })}
+          if (includesFilterStatus && includesSearchQuery) {
+            return <BookCard book={book} key={book.id} />;
+          }
+        })}
+      </div>
     </>
   );
 }
@@ -89,5 +91,15 @@ function FilterButton({
 }
 
 function BookCard({ book }: { book: Book }) {
-  return <div>{book.title}</div>;
+  return (
+    <article className="flex flex-row">
+      <section className="w-[45%]">
+        <img src={book.imageUrl ? book.imageUrl : ""} className="w-full" />
+      </section>
+      <section className="w-[55%] p-2 flex flex-col gap-2">
+        <h2 className="font-semibold">{book.title}</h2>
+        <p>{book.authors.join(", ")}</p>
+      </section>
+    </article>
+  );
 }
