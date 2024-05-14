@@ -39,7 +39,7 @@ export default function BookStatus({ book }: { book: Book }) {
                 .join(" ")
             )}
           </p>
-          <Button onClick={() => setEditMode(true)}>Edit</Button>
+          <Button onClick={() => setEditMode(true)}>Edit Reading Status</Button>
         </>
       )}
     </div>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BookStatus from "@/components/book-status";
+import RemoveBookModal from "@/components/remove-book-modal";
 
 export default function BookshelvesContent({ books }: { books: Book[] }) {
   const [search, setSearch] = useState("");
@@ -93,14 +94,18 @@ function FilterButton({
 
 function BookCard({ book }: { book: Book }) {
   return (
-    <article className="flex flex-row">
-      <section className="w-[45%]">
-        <img src={book.imageUrl ? book.imageUrl : ""} className="w-full" />
+    <article className="flex flex-col justify-center items-center bg-white border-blue-500 border-solid border-[1px] gap-4 rounded-lg p-4">
+      <section className="w-full flex flex-row justify-center items-center">
+        <img
+          src={book.imageUrl ? book.imageUrl : ""}
+          className="w-[200px] h-[250px] rounded-lg"
+        />
       </section>
-      <section className="w-[55%] p-2 flex flex-col gap-2">
-        <h2 className="font-semibold">{book.title}</h2>
+      <section className="w-full p-2 flex flex-col gap-2">
+        <h2 className="font-semibold text-lg">{book.title}</h2>
         <p>{book.authors.join(", ")}</p>
         <BookStatus book={book} />
+        <RemoveBookModal googleId={book.googleId} />
       </section>
     </article>
   );
