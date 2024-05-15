@@ -33,6 +33,7 @@ export async function addBook({
 export async function getUserBooks(userId: string) {
   const userBooks = await db.book.findMany({
     where: { userId },
+    orderBy: { dateAdded: "desc" },
   });
 
   return userBooks;
@@ -95,4 +96,22 @@ export async function updateBook({
   }
 
   return updatedBook;
+}
+
+export async function getRatings(googleId: string) {
+  const books = await db.book.findMany({ where: { googleId } });
+  const ratings = books
+    .map((book) => book.rating)
+    .filter((rating) => rating !== null) as number[];
+
+  if (ratings.length === 0) {
+    return null;
+  }
+
+  const totalRatings = ratings.length;
+  const averageRating = Math.round(
+    ratings.reduce((a, b) => a + b, 0) / totalRatings
+  );
+
+  return { averageRating, totalRatings };
 }

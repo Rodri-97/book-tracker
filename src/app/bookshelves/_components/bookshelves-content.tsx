@@ -8,6 +8,7 @@ import BookStatus from "@/components/book-status";
 import RemoveBookModal from "@/components/remove-book-modal";
 import UserBookRating from "@/components/user-book-rating";
 import Link from "next/link";
+import BookDates from "@/components/book-dates";
 
 export default function BookshelvesContent({ books }: { books: Book[] }) {
   const [search, setSearch] = useState("");
@@ -98,6 +99,17 @@ function FilterButton({
 function BookCard({ book }: { book: Book }) {
   return (
     <article className="flex flex-col justify-center items-center bg-white border-blue-500 border-solid border-[1px] gap-4 rounded-lg p-2">
+      <section className="w-full flex flex-row justify-between items-center">
+        <div></div>
+        <div className="flex flex-col justify-center items-center text-center h-28 gap-0 overflow-x-auto overflow-y-auto p-2">
+          <h2 className="font-semibold text-lg text-blue-500">{book.title}</h2>
+          <p className="font-semibold">{book.authors.join(", ")}</p>
+        </div>
+        <div className="mb-auto">
+          <RemoveBookModal googleId={book.googleId} />
+        </div>
+      </section>
+
       <section className="w-full flex flex-row justify-center items-center">
         <Link href={`books/${book.googleId}`}>
           <img
@@ -108,16 +120,9 @@ function BookCard({ book }: { book: Book }) {
       </section>
 
       <section className="w-full p-2 flex flex-col gap-4 h-64">
-        <div className="flex flex-col gap-0 overflow-x-auto overflow-y-auto">
-          <h2 className="font-semibold text-lg text-blue-500">{book.title}</h2>
-          <p className="font-semibold">{book.authors.join(", ")}</p>
-        </div>
-        {book.status === "READ" ? <UserBookRating book={book} /> : null}
         <BookStatus book={book} />
-
-        <div className="mt-auto ml-auto">
-          <RemoveBookModal googleId={book.googleId} />
-        </div>
+        <BookDates book={book} />
+        {book.status === "READ" ? <UserBookRating book={book} /> : null}
       </section>
     </article>
   );
