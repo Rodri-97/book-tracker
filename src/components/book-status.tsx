@@ -42,7 +42,7 @@ export default function BookStatus({ book }: { book: Book }) {
           await handleSubmit(value);
         }}
       >
-        <SelectTrigger className="w-[300px] text-foreground bg-blue-50 border-blue-500 border-solid border-2">
+        <SelectTrigger className="w-[250px] text-foreground bg-blue-50 border-blue-500 border-solid border-2">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
