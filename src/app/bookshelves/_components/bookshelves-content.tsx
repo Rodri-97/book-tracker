@@ -95,19 +95,24 @@ function FilterButton({
 
 function BookCard({ book }: { book: Book }) {
   return (
-    <article className="flex flex-col justify-center items-center bg-white border-blue-500 border-solid border-[1px] gap-4 rounded-lg p-4">
-      <section className="w-full flex flex-row justify-center items-center">
+    <article className="flex flex-col justify-center items-center bg-white border-blue-500 border-solid border-[1px] gap-4 rounded-lg p-2">
+      <section className="w-full flex flex-row">
         <img
           src={book.imageUrl ? book.imageUrl : ""}
-          className="w-[200px] h-[250px] rounded-lg"
+          className="w-[200px] h-[250px] rounded-lg ml-auto mr-auto"
         />
+        <div className="mb-auto ml-auto">
+          <RemoveBookModal googleId={book.googleId} />
+        </div>
       </section>
-      <section className="w-full p-2 flex flex-col gap-2">
-        <h2 className="font-semibold text-lg">{book.title}</h2>
-        <p>{book.authors.join(", ")}</p>
+
+      <section className="w-full p-2 flex flex-col gap-4">
+        <div className="flex flex-col gap-0">
+          <h2 className="font-semibold text-lg text-blue-500">{book.title}</h2>
+          <p className="font-semibold">{book.authors.join(", ")}</p>
+        </div>
         {book.status === "READ" ? <UserBookRating book={book} /> : null}
         <BookStatus book={book} />
-        <RemoveBookModal googleId={book.googleId} />
       </section>
     </article>
   );

@@ -46,7 +46,9 @@ export default function RemoveBookModal({ googleId }: { googleId: string }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive">Remove Book</Button>
+        <Button className="h-6 w-6 text-sm p-2" variant="destructive">
+          X
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className="flex flex-col justify-center items-center">
