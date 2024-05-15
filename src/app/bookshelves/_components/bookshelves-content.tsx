@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import BookStatus from "@/components/book-status";
 import RemoveBookModal from "@/components/remove-book-modal";
 import UserBookRating from "@/components/user-book-rating";
+import Link from "next/link";
 
 export default function BookshelvesContent({ books }: { books: Book[] }) {
   const [search, setSearch] = useState("");
@@ -97,11 +98,13 @@ function FilterButton({
 function BookCard({ book }: { book: Book }) {
   return (
     <article className="flex flex-col justify-center items-center bg-white border-blue-500 border-solid border-[1px] gap-4 rounded-lg p-2">
-      <section className="w-full flex flex-row">
-        <img
-          src={book.imageUrl ? book.imageUrl : ""}
-          className="w-[200px] h-[250px] rounded-lg ml-auto mr-auto"
-        />
+      <section className="w-full flex flex-row justify-center items-center">
+        <Link href={`books/${book.googleId}`}>
+          <img
+            src={book.imageUrl ? book.imageUrl : ""}
+            className="w-[200px] h-[250px] rounded-lg ml-auto mr-auto"
+          />
+        </Link>
       </section>
 
       <section className="w-full p-2 flex flex-col gap-4 h-64">
