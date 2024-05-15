@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BookStatus from "@/components/book-status";
 import RemoveBookModal from "@/components/remove-book-modal";
+import UserBookRating from "@/components/user-book-rating";
 
 export default function BookshelvesContent({ books }: { books: Book[] }) {
   const [search, setSearch] = useState("");
@@ -104,6 +105,7 @@ function BookCard({ book }: { book: Book }) {
       <section className="w-full p-2 flex flex-col gap-2">
         <h2 className="font-semibold text-lg">{book.title}</h2>
         <p>{book.authors.join(", ")}</p>
+        {book.status === "READ" ? <UserBookRating book={book} /> : null}
         <BookStatus book={book} />
         <RemoveBookModal googleId={book.googleId} />
       </section>
