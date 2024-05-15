@@ -26,19 +26,20 @@ export default function BookshelvesContent({ books }: { books: Book[] }) {
 
   return (
     <>
-      <div className="flex flex-col gap-4 mb-4">
-        <h1 className="font-semibold text-2xl">Bookshelves</h1>
+      <div className="flex flex-col gap-4 mb-12">
+        <div className="flex flex-col gap-2 lg:flex-row lg:justify-between">
+          <h1 className="font-semibold text-2xl">Bookshelves</h1>
+          <Input
+            className="bg-white w-72"
+            placeholder="Search..."
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+            value={search}
+          />
+        </div>
 
-        <Input
-          className="bg-white w-72"
-          placeholder="Search..."
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          value={search}
-        />
-
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-row flex-wrap gap-2 lg:justify-center">
           {filterButtons.map((buttonText) => {
             return (
               <FilterButton
@@ -52,7 +53,7 @@ export default function BookshelvesContent({ books }: { books: Book[] }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 xl:grid xl:grid-cols-3 2xl:grid 2xl:grid-cols-4">
         {books.map((book) => {
           const includesFilterStatus =
             selectedFilterButton === "All" ||
@@ -101,18 +102,19 @@ function BookCard({ book }: { book: Book }) {
           src={book.imageUrl ? book.imageUrl : ""}
           className="w-[200px] h-[250px] rounded-lg ml-auto mr-auto"
         />
-        <div className="mb-auto ml-auto">
-          <RemoveBookModal googleId={book.googleId} />
-        </div>
       </section>
 
-      <section className="w-full p-2 flex flex-col gap-4">
-        <div className="flex flex-col gap-0">
+      <section className="w-full p-2 flex flex-col gap-4 h-64">
+        <div className="flex flex-col gap-0 overflow-x-auto overflow-y-auto">
           <h2 className="font-semibold text-lg text-blue-500">{book.title}</h2>
           <p className="font-semibold">{book.authors.join(", ")}</p>
         </div>
         {book.status === "READ" ? <UserBookRating book={book} /> : null}
         <BookStatus book={book} />
+
+        <div className="mt-auto ml-auto">
+          <RemoveBookModal googleId={book.googleId} />
+        </div>
       </section>
     </article>
   );
