@@ -102,7 +102,7 @@ function BookCard({ book }: { book: Book }) {
         <Link href={`books/${book.googleId}`}>
           <img
             src={book.imageUrl ? book.imageUrl : ""}
-            className="w-[200px] h-[250px] rounded-lg ml-auto mr-auto"
+            className="w-[200px] h-[250px] rounded-lg ml-auto mr-auto border-transparent border-solid border-4 hover:border-blue-500"
           />
         </Link>
       </section>
