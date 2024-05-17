@@ -1,12 +1,4 @@
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import { generateArrayInRange, getSearchResultsUrl } from "@/lib/helpers";
+import PaginationContainer from "@/components/pagination-container";
 import { GoogleAPIBook } from "@/lib/interfaces";
 import axios from "axios";
 import Link from "next/link";
@@ -85,6 +77,8 @@ export default async function SearchResults({
 
   const authorConditional = author && author.length > 0 ? authorSpan : null;
 
+  const urlCore = `/search-results?title=${title}&author=${author}&`;
+
   return (
     <>
       <h2 className="text-2xl font-bold text-center mb-8">
@@ -98,12 +92,7 @@ export default async function SearchResults({
         })}
       </div>
 
-      <PaginationContainer
-        numPages={numPages}
-        title={title}
-        author={author}
-        page={page}
-      />
+      <PaginationContainer urlCore={urlCore} numPages={numPages} page={page} />
     </>
   );
 }
@@ -139,51 +128,5 @@ function BookCard({ book }: { book: GoogleAPIBook }) {
         </span>
       </div>
     </Link>
-  );
-}
-
-function PaginationContainer({
-  numPages,
-  title,
-  author,
-  page,
-}: {
-  numPages: number;
-  title: string | undefined;
-  author: string | undefined;
-  page: number;
-}) {
-  return (
-    <Pagination className="mt-6">
-      <PaginationContent>
-        {page > 1 ? (
-          <PaginationItem>
-            <PaginationPrevious
-              href={getSearchResultsUrl(title, author, page - 1)}
-            />
-          </PaginationItem>
-        ) : null}
-        {generateArrayInRange(1, numPages).map((n) => {
-          return (
-            <PaginationItem key={n}>
-              {" "}
-              <PaginationLink
-                href={n === page ? "#" : getSearchResultsUrl(title, author, n)}
-                isActive={n === page}
-              >
-                {n}
-              </PaginationLink>{" "}
-            </PaginationItem>
-          );
-        })}
-        {page < numPages ? (
-          <PaginationItem>
-            <PaginationNext
-              href={getSearchResultsUrl(title, author, page + 1)}
-            />
-          </PaginationItem>
-        ) : null}
-      </PaginationContent>
-    </Pagination>
   );
 }

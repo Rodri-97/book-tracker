@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getSearchResultsUrl } from "@/lib/helpers";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -13,7 +12,9 @@ export default function Search() {
   const router = useRouter();
 
   function performSearch() {
-    return router.push(getSearchResultsUrl(searchTitle, searchAuthor, 1));
+    return router.push(
+      `/search-results?title=${searchTitle}&author=${searchAuthor}&page=1`
+    );
   }
 
   return (

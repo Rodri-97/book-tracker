@@ -4,15 +4,7 @@ import { validateRequest } from "@/lib/utils.server";
 import { redirect } from "next/navigation";
 import SearchBookshelves from "./_components/search-bookshelves";
 import FilterButton from "./_components/filter-button";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import PaginationContainer from "@/components/pagination-container";
 
 export default async function Bookshelves({
   searchParams,
@@ -64,6 +56,10 @@ export default async function Bookshelves({
     "Read",
   ];
 
+  const urlCore = `bookshelves?${status ? `status=${status}&` : ""}${
+    q ? `q=${q}&` : ""
+  }`;
+
   return (
     <>
       <div className="flex flex-col gap-4 mb-12">
@@ -78,103 +74,14 @@ export default async function Bookshelves({
           })}
         </div>
       </div>
+
       {books.length === 0 ? (
         <div>No books found.</div>
       ) : (
         <BookshelvesContent books={books} />
       )}
 
-      <PaginationContainer
-        numPages={numPages}
-        page={page}
-        status={status}
-        q={q}
-      />
+      <PaginationContainer urlCore={urlCore} numPages={numPages} page={page} />
     </>
-  );
-}
-
-function PaginationContainer({
-  numPages,
-  page,
-  status,
-  q,
-}: {
-  numPages: number;
-  page: number;
-  status: string | undefined;
-  q: string | undefined;
-}) {
-  const urlCore = `bookshelves?${status ? `status=${status}&` : ""}${
-    q ? `q=${q}&` : ""
-  }page=`;
-
-  return (
-    <Pagination className="mt-12">
-      <PaginationContent>
-        {page > 1 ? (
-          <PaginationItem>
-            <PaginationPrevious href={`${urlCore}${page - 1}`} />
-          </PaginationItem>
-        ) : null}
-
-        <PaginationItem>
-          <PaginationLink href={`${urlCore}${1}`} isActive={1 === page}>
-            1
-          </PaginationLink>
-        </PaginationItem>
-
-        {[2, 3].includes(numPages) ? (
-          <PaginationItem>
-            <PaginationLink href={`${urlCore}${2}`} isActive={2 === page}>
-              2
-            </PaginationLink>
-          </PaginationItem>
-        ) : null}
-
-        {numPages > 3 ? (
-          <>
-            {page !== 1 && page !== numPages ? (
-              <>
-                {page === 2 ? null : (
-                  <PaginationItem>
-                    <PaginationEllipsis />
-                  </PaginationItem>
-                )}
-
-                <PaginationItem>
-                  <PaginationLink href="#" isActive={true}>
-                    {page}
-                  </PaginationLink>
-                </PaginationItem>
-              </>
-            ) : null}
-
-            {numPages - 1 === page ? null : (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
-          </>
-        ) : null}
-
-        {numPages > 2 ? (
-          <PaginationItem>
-            <PaginationLink
-              href={`${urlCore}${numPages}`}
-              isActive={numPages === page}
-            >
-              {numPages}
-            </PaginationLink>
-          </PaginationItem>
-        ) : null}
-
-        {page < numPages ? (
-          <PaginationItem>
-            <PaginationNext href={`${urlCore}${page + 1}`} />
-          </PaginationItem>
-        ) : null}
-      </PaginationContent>
-    </Pagination>
   );
 }
