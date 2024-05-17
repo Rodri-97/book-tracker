@@ -11,7 +11,9 @@ export default function FilterButton({ text }: { text: string }) {
     text === "All" ? null : text.toLowerCase().split(" ").join("-");
 
   return (
-    <Link href={`bookshelves${text === "All" ? "" : `?status=${newStatus}`}`}>
+    <Link
+      href={`bookshelves?${text === "All" ? "" : `status=${newStatus}&`}page=1`}
+    >
       <Button
         className={`bg-white text-blue-500 p-2 rounded-lg ${
           currentStatus === newStatus ? "border-blue-500" : "border-transparent"

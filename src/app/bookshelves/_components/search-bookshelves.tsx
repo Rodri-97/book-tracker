@@ -15,7 +15,7 @@ export default function SearchBookshelves() {
 
   function performSearch() {
     return router.push(
-      `${path}?${status ? `status=${status}&` : ""}q=${search}`
+      `${path}?${status ? `status=${status}&` : ""}q=${search}&page=1`
     );
   }
 
