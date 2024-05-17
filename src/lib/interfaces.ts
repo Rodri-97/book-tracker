@@ -1,7 +1,7 @@
 export interface GoogleAPIBook {
   id: string;
   volumeInfo: {
-    title: string;
+    title?: string;
     authors?: string[];
     description: string;
     imageLinks?: {

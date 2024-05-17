@@ -21,7 +21,7 @@ export async function addBook({
     data: {
       userId,
       googleId,
-      title,
+      title: title ? title : "",
       authors: formattedAuthors,
       imageUrl,
     },

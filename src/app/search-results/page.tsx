@@ -21,6 +21,7 @@ export default async function SearchResults({
   };
 }) {
   const { title, author, page: paramPage } = searchParams;
+
   if (!searchParams || (!title && !author)) {
     return <div>No search query provided.</div>;
   }
@@ -43,7 +44,7 @@ export default async function SearchResults({
 
   if (title) {
     books = books.filter((book) =>
-      book.volumeInfo.title.toLowerCase().includes(title.toLowerCase())
+      book.volumeInfo.title?.toLowerCase().includes(title.toLowerCase())
     );
   }
 
