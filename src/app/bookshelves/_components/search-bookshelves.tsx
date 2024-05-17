@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function SearchBookshelves() {
@@ -10,8 +10,13 @@ export default function SearchBookshelves() {
   const path = usePathname();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status");
+
   function performSearch() {
-    return router.push(`${path}?q=${search}`);
+    return router.push(
+      `${path}?${status ? `status=${status}&` : ""}q=${search}`
+    );
   }
 
   return (
