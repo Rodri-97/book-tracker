@@ -11,6 +11,7 @@ import AddBookButton from "./_components/add-book-button";
 import { generateArrayInRange } from "@/lib/helpers";
 import { getRatings } from "@/services/books.service";
 import BookDates from "@/components/book-dates";
+import BookReviews from "./_components/book-reviews";
 
 export default async function BookDetails({
   params,
@@ -74,10 +75,19 @@ export default async function BookDetails({
           </div>
         </section>
 
-        <hr className="h-[2px] w-full bg-slate-300" />
+        <hr className="h-[1px] w-full bg-slate-300" />
         <section
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
         />
+
+        <div className="w-full">
+          <hr className="h-[2px] bg-slate-300 my-6" />
+          <BookReviews
+            bookGoogleId={bookGoogleData.id}
+            userId={user?.id}
+            userBook={book}
+          />
+        </div>
       </article>
     </div>
   );

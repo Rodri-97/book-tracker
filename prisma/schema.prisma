@@ -27,7 +27,7 @@ model User {
 
   sessions Session[]
   books    Book[]
-  Review   Review[]
+  reviews  Review[]
 }
 
 model Session {
@@ -52,7 +52,7 @@ model Book {
   authors  String[]
   imageUrl String?
 
-  Review Review?
+  review Review?
 
   @@unique([userId, googleId])
 }

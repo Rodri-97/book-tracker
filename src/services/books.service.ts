@@ -115,3 +115,8 @@ export async function getRatings(googleId: string) {
 
   return { averageRating, totalRatings };
 }
+
+export async function getBookById(bookId: string) {
+  const book = await db.book.findFirst({ where: { id: bookId } });
+  return book;
+}

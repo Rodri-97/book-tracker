@@ -46,3 +46,31 @@ export async function updateReview({
   });
   return updatedReview;
 }
+
+export async function getReviewsByUser(userId: string) {
+  const reviews = await db.review.findMany({
+    where: { userId },
+    orderBy: { date: "desc" },
+  });
+  return reviews;
+}
+
+export async function getReviewsForBook(googleId: string) {
+  const reviews = await db.review.findMany({
+    where: {
+      book: {
+        googleId,
+      },
+    },
+    orderBy: { date: "desc" },
+  });
+  return reviews;
+}
+
+export async function getAuthorOfReview(reviewId: string) {
+  const reviewUser = await db.review.findFirst({
+    where: { id: reviewId },
+    select: { user: { select: { id: true, username: true } } },
+  });
+  return reviewUser;
+}
