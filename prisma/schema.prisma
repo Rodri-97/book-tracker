@@ -27,6 +27,7 @@ model User {
 
   sessions Session[]
   books    Book[]
+  Review   Review[]
 }
 
 model Session {
@@ -51,5 +52,19 @@ model Book {
   authors  String[]
   imageUrl String?
 
+  Review Review?
+
   @@unique([userId, googleId])
+}
+
+model Review {
+  id      String   @id @default(uuid())
+  userId  String
+  bookId  String   @unique
+  user    User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+  book    Book     @relation(references: [id], fields: [bookId], onDelete: Cascade)
+  content String
+  date    DateTime @default(now())
+
+  @@unique([userId, bookId])
 }
