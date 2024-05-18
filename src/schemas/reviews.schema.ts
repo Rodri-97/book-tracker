@@ -17,4 +17,9 @@ export const createReviewSchema = z.object({
   ...contentConstraints,
 });
 
+export const editReviewSchema = z.object({
+  ...contentConstraints,
+});
+
 export type CreateReviewRequest = z.infer<typeof createReviewSchema>;
+export type EditReviewRequest = z.infer<typeof editReviewSchema>;
