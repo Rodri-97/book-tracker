@@ -22,7 +22,7 @@ export default function SearchBookshelves() {
   return (
     <div className="flex flex-col gap-2 lg:flex-row">
       <Input
-        className="bg-white w-72"
+        className="bg-white w-full"
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {

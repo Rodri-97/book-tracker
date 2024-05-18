@@ -62,7 +62,7 @@ export default async function Bookshelves({
 
   return (
     <>
-      <div className="flex flex-col gap-4 mb-12">
+      <div className="flex flex-col gap-8 mb-12">
         <div className="flex flex-col gap-2 lg:flex-row lg:justify-between">
           <h1 className="font-semibold text-2xl">Bookshelves</h1>
           <SearchBookshelves />
