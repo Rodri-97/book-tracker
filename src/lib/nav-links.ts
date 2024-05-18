@@ -18,6 +18,6 @@ export const unauthedNavLinks: NavLinkProp[] = [
 export const authedNavLinks: NavLinkProp[] = [
   ...commonNavLinks,
   { id: 3, href: "/bookshelves", text: "Bookshelves" },
-  { id: 4, href: "#", text: "Reviews" },
-  { id: 5, href: "#", text: "Statistics" },
+  { id: 4, href: "/reviews", text: "Reviews" },
+  { id: 5, href: "/statistics", text: "Statistics" },
 ];
