@@ -56,7 +56,7 @@ export default async function Bookshelves({
     "Read",
   ];
 
-  const urlCore = `bookshelves?${status ? `status=${status}&` : ""}${
+  const urlCore = `/bookshelves?${status ? `status=${status}&` : ""}${
     q ? `q=${q}&` : ""
   }`;
 

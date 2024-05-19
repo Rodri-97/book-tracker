@@ -1,6 +1,7 @@
 import CreateReviewModal from "@/components/create-review-modal";
 import DeleteReviewModal from "@/components/delete-review-modal";
 import EditReviewModal from "@/components/edit-review-modal";
+import PaginationContainer from "@/components/pagination-container";
 import {
   getAuthorOfReview,
   getReviewsForBook,
@@ -11,16 +12,28 @@ export default async function BookReviews({
   bookGoogleId,
   userId,
   userBook,
+  reviewsPage,
 }: {
   bookGoogleId: string;
   userId: string | undefined;
   userBook: Book | null;
+  reviewsPage: number;
 }) {
-  const bookReviews = await getReviewsForBook(bookGoogleId);
+  let bookReviews = await getReviewsForBook(bookGoogleId);
 
   const bookReviewByUser = bookReviews.filter(
     (review) => review.userId === userId
   );
+
+  const reviewsPerPage = 5;
+
+  const numPages = Math.ceil(bookReviews.length / reviewsPerPage);
+
+  const startIdx = (reviewsPage - 1) * reviewsPerPage;
+  const endIdx = startIdx + reviewsPerPage;
+  bookReviews = bookReviews.slice(startIdx, endIdx);
+
+  const urlCore = `/books/${bookGoogleId}?`;
 
   return (
     <section className="flex flex-col gap-4">
@@ -43,6 +56,11 @@ export default async function BookReviews({
           ))}
         </>
       )}
+      <PaginationContainer
+        urlCore={urlCore}
+        numPages={numPages}
+        page={reviewsPage}
+      />
     </section>
   );
 }

@@ -15,8 +15,10 @@ import BookReviews from "./_components/book-reviews";
 
 export default async function BookDetails({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: { page: string };
 }) {
   const res = await axios
     .get(`https://www.googleapis.com/books/v1/volumes/${params.id}`)
@@ -38,6 +40,10 @@ export default async function BookDetails({
   if (user) {
     book = await getBookByIds({ googleId: bookGoogleData.id, userId: user.id });
   }
+
+  const { page: paramPage } = searchParams;
+
+  const reviewsPage = isNaN(Number(paramPage)) ? 1 : Number(paramPage);
 
   return (
     <div>
@@ -86,6 +92,7 @@ export default async function BookDetails({
             bookGoogleId={bookGoogleData.id}
             userId={user?.id}
             userBook={book}
+            reviewsPage={reviewsPage}
           />
         </div>
       </article>

@@ -6,24 +6,50 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import EditReviewModal from "@/components/edit-review-modal";
 import DeleteReviewModal from "@/components/delete-review-modal";
+import PaginationContainer from "@/components/pagination-container";
 
-export default async function Reviews() {
+export default async function Reviews({
+  searchParams,
+}: {
+  searchParams: {
+    page: string | undefined;
+  };
+}) {
   const { user } = await validateRequest();
 
   if (!user) return redirect("/login");
 
-  const reviews = await getReviewsByUser(user.id);
+  let reviews = await getReviewsByUser(user.id);
 
   if (!reviews || reviews.length === 0) {
     return <div>You have not left any reviews yet.</div>;
   }
 
+  const { page: paramPage } = searchParams;
+
+  const page = isNaN(Number(paramPage)) ? 1 : Number(paramPage);
+
+  const reviewsPerPage = 5;
+
+  const numPages = Math.ceil(reviews.length / reviewsPerPage);
+
+  const startIdx = (page - 1) * reviewsPerPage;
+  const endIdx = startIdx + reviewsPerPage;
+  reviews = reviews.slice(startIdx, endIdx);
+
+  const urlCore = "/reviews?";
+
   return (
     <div>
       <h1 className="text-2xl font-semibold text-left mb-6">My Reviews</h1>
-      {reviews.map((review) => {
-        return <ReviewCard review={review} key={review.id} />;
-      })}
+
+      <div className="flex flex-col gap-6">
+        {reviews.map((review) => {
+          return <ReviewCard review={review} key={review.id} />;
+        })}
+      </div>
+
+      <PaginationContainer urlCore={urlCore} numPages={numPages} page={page} />
     </div>
   );
 }
@@ -34,7 +60,7 @@ async function ReviewCard({ review }: { review: Review }) {
   if (!book) return null;
 
   return (
-    <div className="bg-white border-blue-700 border-solid border-2 rounded-lg p-4 flex flex-col justify-center gap-4 lg:flex-row lg:justify-start">
+    <div className="bg-blue-50 border-blue-700 border-solid border-2 rounded-lg p-4 flex flex-col justify-center gap-4 lg:flex-row lg:justify-start">
       <div className="flex flex-row justify-center items-center lg:w-1/6">
         <Link href={`books/${book.googleId}`} className="cursor-pointer">
           <img

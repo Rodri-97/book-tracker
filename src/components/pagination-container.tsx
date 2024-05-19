@@ -17,6 +17,8 @@ export default function PaginationContainer({
   numPages: number;
   page: number;
 }) {
+  console.log(urlCore);
+
   function generateUrl(p: number) {
     return `${urlCore}page=${p}`;
   }
