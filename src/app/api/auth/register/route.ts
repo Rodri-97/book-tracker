@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       return new Response(error.message, { status: 400 });
     }
 
-    return new Response("Invalid username or password.", {
+    return new Response("Something went wrong.", {
       status: 500,
     });
   }
