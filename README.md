@@ -1,7 +1,5 @@
 ## LitQuest
 
-## Description
-
 A book tracker web app to help you keep track of your readings.
 
 ## Features
@@ -32,4 +30,4 @@ I decided that the trade-offs of the second option were worth it. Because I want
 - [shadcn/ui](https://ui.shadcn.com/), for providing many of the essential UI components.
 - [This GitHub repository](https://github.com/gottumukkalakiran/Book-Hub), for the design inspiration.
 - [Fly.io](https://fly.io/docs/js/frameworks/nextjs/), for making it very easy to dockerize and deploy this application.
-- [Josh Tried Coding](https://www.youtube.com/@joshtriedcoding/videos) and [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified), two extremely helpful YouTube creators on anything related to the TypeScript and React/Node ecosystems.
+- [Josh Tried Coding](https://www.youtube.com/@joshtriedcoding) and [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified), two extremely helpful YouTube creators on anything related to the TypeScript and React/Node ecosystems.
