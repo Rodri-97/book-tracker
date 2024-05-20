@@ -47,7 +47,7 @@ export default function Home() {
       image: "/covers/the-origin-of-species.jpeg",
     },
     {
-      id: "DhGMEAAAQBAJ",
+      id: "73j1EAAAQBAJ",
       title: "1984",
       author: "George Orwell",
       image: "/covers/1984.jpeg",
