@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## LitQuest
 
-## Getting Started
+## Description
 
-First, run the development server:
+A book tracker web app to help you keep track of your readings.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Search for books by title and/or author.
+- User registration and authentication.
+- Add books to personal library.
+- Track books as “To Read”, “Currently Reading”, “Did Not Finish”, and “Read”.
+- Rate and review books.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Motivation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+I’ve been using [Goodreads](https://www.goodreads.com/) for years and it certainly does the job, but I find its UI clunky at times. Namely because of the constant full-page reloads. That’s why I decided to create my own version that would have a snappier, more SPA-like feel.
 
-## Learn More
+Though I’m familiar with a variety of languages, I’m most comfortable with TypeScript, making it the obvious choice for this project. From there, I had two main options when it comes to the project’s architecture:
 
-To learn more about Next.js, take a look at the following resources:
+- Either build a standard single-page application that would fetch user data from a separate REST API. In this setting, there would be a strict separation of concerns between the frontend and the backend.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Or use a full-stack framework to have a more cohesive codebase and remove repetition. At the cost of some flexibility (like the possibility to swap out or separately deploy the frontend or the backend) and of a tighter coupling of concerns.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+I decided that the trade-offs of the second option were worth it. Because I wanted to write my backend in TypeScript anyway and I thought the first option would just add a lot of unnecessary overhead in the context of this project. Additionally, this application requires some parts to be rendered on the server (namely the search feature, so even unauthenticated users can search for books), and going the standard SPA + separate REST API way would thus require me to run my application in two servers, instead of just one. That’s how I ended up picking the Next.js framework, for its full-stack capabilities and extensive community.
 
-## Deploy on Vercel
+## Acknowledgements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [The Next.js documentation](https://nextjs.org/docs)
+- [The Google Books API guide](https://developers.google.com/books/docs/v1/using)
+- [Lucia](https://lucia-auth.com/), an absolutely stellar authentication library.
+- [shadcn/ui](https://ui.shadcn.com/), for providing many of the essential UI components.
+- [This GitHub repository](https://github.com/gottumukkalakiran/Book-Hub), for the design inspiration.
+- [Fly.io](https://fly.io/docs/js/frameworks/nextjs/), for making it very easy to dockerize and deploy this application.
+- [Josh Tried Coding](https://www.youtube.com/@joshtriedcoding/videos) and [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified), two extremely helpful YouTube creators on anything related to the TypeScript and React/Node ecosystems.
