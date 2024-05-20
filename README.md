@@ -1,6 +1,6 @@
 ## LitQuest
 
-A book tracker web app to help you keep track of your readings.
+A book tracker web app to help you organize your readings.
 
 ## Features
 
@@ -18,7 +18,7 @@ Though I’m familiar with a variety of languages, I’m most comfortable with T
 
 - Either build a standard single-page application that would fetch user data from a separate REST API. In this setting, there would be a strict separation of concerns between the frontend and the backend.
 
-- Or use a full-stack framework to have a more cohesive codebase and remove repetition. At the cost of some flexibility (like the possibility to swap out or separately deploy the frontend or the backend) and of a tighter coupling of concerns.
+- Or use a full-stack framework to have a more cohesive codebase and remove repetition. At the cost of some flexibility (like the possibility to swap out or separately deploy the frontend or the backend, or write them in different languages) and of a tighter coupling of concerns.
 
 I decided that the trade-offs of the second option were worth it. Because I wanted to write my backend in TypeScript anyway and I thought the first option would just add a lot of unnecessary overhead in the context of this project. Additionally, this application requires some parts to be rendered on the server (namely the search feature, so even unauthenticated users can search for books), and going the standard SPA + separate REST API way would thus require me to run my application in two servers, instead of just one. That’s how I ended up picking the Next.js framework, for its full-stack capabilities and extensive community.
 
@@ -63,7 +63,7 @@ I decided that the trade-offs of the second option were worth it. Because I want
    ```
 
 4. **Set up environment variables**\
-   Create a `.env` file in the root directory and add add this environment variable:
+   Create a `.env` file in the root directory and add this environment variable:
 
    ```plaintext
    DATABASE_URL=[your_database_url]
