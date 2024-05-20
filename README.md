@@ -31,3 +31,51 @@ I decided that the trade-offs of the second option were worth it. Because I want
 - [This GitHub repository](https://github.com/gottumukkalakiran/Book-Hub), for the design inspiration.
 - [Fly.io](https://fly.io/docs/js/frameworks/nextjs/), for making it very easy to dockerize and deploy this application.
 - [Josh Tried Coding](https://www.youtube.com/@joshtriedcoding) and [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified), two extremely helpful YouTube creators on anything related to the TypeScript and React/Node ecosystems.
+
+## Installation
+
+### Prerequisites
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Local PostgreSQL database](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/) (Docker isn't the only option here, but it's certainly one of the simplest.)
+
+### Steps
+
+1. **Clone the repository**
+
+   ```sh
+   git clone https://github.com/Rodri-97/book-tracker.git
+   cd book-tracker
+   ```
+
+2. **Install dependencies**
+
+   ```sh
+   npm install
+   ```
+
+3. **Remove unneeded files and dependencies (optional)**\
+   These files and dependencies are for deployment purposes only. So they're not needed if you just want to run the project locally or deploy it in a different manner.
+
+   ```sh
+   rm -rf Dockerfile .dockerignore fly.toml
+   npm uninstall @flydotio/dockerfile
+   ```
+
+4. **Set up environment variables**\
+   Create a `.env` file in the root directory and add add this environment variable:
+
+   ```plaintext
+   DATABASE_URL=[your_database_url]
+   ```
+
+5. **Apply database migrations**
+
+   ```sh
+   npx prisma migrate dev
+   ```
+
+6. **Start the development server**
+   ```sh
+   npm run dev
+   ```
