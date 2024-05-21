@@ -36,9 +36,7 @@ export default function FavoriteAuthors({ authors }: { authors: string[] }) {
       {
         label: "Books read from this author",
         data: [...mostFrequentAuthors.map((el) => el[1])],
-        backgroundColor: ["rgba(132, 99, 255, 0.2)"],
-        borderColor: ["rgba(54, 162, 235, 1)"],
-        borderWidth: 1,
+        backgroundColor: ["rgba(0, 128, 128, 0.8)"],
       },
     ],
   };

@@ -79,11 +79,9 @@ export default function BooksReadByYear({
     ],
     datasets: [
       {
-        label: "Books Read",
+        label: "Books read that month",
         data: [...Object.values(booksReadByMonth)],
-        backgroundColor: ["rgba(132, 99, 255, 0.2)"],
-        borderColor: ["rgba(54, 162, 235, 1)"],
-        borderWidth: 1,
+        backgroundColor: ["rgba(255, 127, 80, 0.8)"],
       },
     ],
   };
