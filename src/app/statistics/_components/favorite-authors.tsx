@@ -28,11 +28,16 @@ export default function FavoriteAuthors({ authors }: { authors: string[] }) {
 
   const mostFrequentAuthors = findMostFrequentElements(authors, 5);
 
+  const indexAxis: "x" | "y" | undefined = "y";
+
   const options = {
+    indexAxis,
+    maintainAspectRatio: false,
     scales: {
       y: {
         ticks: {
           precision: 0,
+          autoSkip: false,
         },
       },
     },
@@ -50,8 +55,8 @@ export default function FavoriteAuthors({ authors }: { authors: string[] }) {
   };
 
   return (
-    <>
+    <div className="h-[350px] lg:h-full">
       <Bar options={options} data={data} />
-    </>
+    </div>
   );
 }

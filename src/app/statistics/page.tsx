@@ -33,7 +33,8 @@ export default async function Statistics({
   return (
     <div className="flex flex-col gap-8">
       <h2 className="text-2xl font-bold">Statistics</h2>
-      <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
+
+      <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:grid-rows-1">
         <div className="flex flex-col gap-2 bg-white p-4 rounded-lg">
           <div className="flex flex-row justify-center items-center gap-1">
             {year > firstYear ? (
@@ -52,14 +53,7 @@ export default async function Statistics({
           <BooksReadByYear year={year} books={userBooks} />
         </div>
 
-        <div className="flex flex-col justify-center items-center gap-2 bg-white p-4 rounded-lg">
-          <h3 className="font-bold text-xl text-blue-600">Favorite authors</h3>
-          <FavoriteAuthors
-            authors={readBooks.map((book) => book.authors).flat()}
-          />
-        </div>
-
-        <div className="bg-white p-4 flex flex-col justify-center items-center gap-2 lg:col-span-2">
+        <div className="bg-white p-4 flex flex-col justify-center items-center gap-2">
           <h3 className="font-bold text-xl text-blue-600">Books by status</h3>
           <BooksByStatus bookStatuses={userBooks.map((book) => book.status)} />
         </div>

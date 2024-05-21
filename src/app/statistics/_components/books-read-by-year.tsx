@@ -52,11 +52,16 @@ export default function BooksReadByYear({
       .length,
   };
 
+  const indexAxis: "x" | "y" | undefined = "y";
+
   const options = {
+    indexAxis,
+    maintainAspectRatio: false,
     scales: {
       y: {
         ticks: {
           precision: 0,
+          autoSkip: false,
         },
       },
     },
@@ -87,8 +92,8 @@ export default function BooksReadByYear({
   };
 
   return (
-    <>
+    <div className="h-[400px] lg:h-full">
       <Bar options={options} data={data} />
-    </>
+    </div>
   );
 }
