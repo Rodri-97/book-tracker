@@ -3,6 +3,7 @@ import { getUserBooks } from "@/services/books.service";
 import { redirect } from "next/navigation";
 import BooksReadByYear from "./_components/books-read-by-year";
 import { PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import FavoriteAuthors from "./_components/favorite-authors";
 
 export default async function Statistics({
   searchParams,
@@ -31,22 +32,31 @@ export default async function Statistics({
   return (
     <div className="flex flex-col gap-8">
       <h2 className="text-2xl font-bold">Statistics</h2>
-      <div className="flex flex-col gap-1">
-        <div className="flex flex-row justify-center items-center gap-1">
-          {year > firstYear ? (
-            <PaginationPrevious href={`/statistics?year=${year - 1}`} />
-          ) : null}
+      <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
+        <div className="flex flex-col gap-1 bg-white p-4 rounded-lg">
+          <div className="flex flex-row justify-center items-center gap-1">
+            {year > firstYear ? (
+              <PaginationPrevious href={`/statistics?year=${year - 1}`} />
+            ) : null}
 
-          <h3 className="font-bold text-lg text-blue-600">
-            Books read in {year}
-          </h3>
+            <h3 className="font-bold text-xl text-blue-600">
+              Books read in {year}
+            </h3>
 
-          {year < currentYear ? (
-            <PaginationNext href={`/statistics?year=${year + 1}`} />
-          ) : null}
+            {year < currentYear ? (
+              <PaginationNext href={`/statistics?year=${year + 1}`} />
+            ) : null}
+          </div>
+
+          <BooksReadByYear year={year} books={userBooks} />
         </div>
 
-        <BooksReadByYear year={year} books={userBooks} />
+        <div className="flex flex-col justify-center items-center gap-1 bg-white p-4 rounded-lg">
+          <h3 className="font-bold text-xl text-blue-600">Favorite authors</h3>
+          <FavoriteAuthors
+            authors={readBooks.map((book) => book.authors).flat()}
+          />
+        </div>
       </div>
     </div>
   );
