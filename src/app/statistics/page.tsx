@@ -3,7 +3,6 @@ import { getUserBooks } from "@/services/books.service";
 import { redirect } from "next/navigation";
 import BooksReadByYear from "./_components/books-read-by-year";
 import { PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import FavoriteAuthors from "./_components/favorite-authors";
 import BooksByStatus from "./_components/books-by-status";
 
 export default async function Statistics({
