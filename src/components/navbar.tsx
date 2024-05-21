@@ -58,8 +58,10 @@ function NavbarLinks({
       {navLinks.map((navLink) => {
         return (
           <Link
-            className={`h-full flex justify-center items-center lg:pr-6 ${
-              pathname === navLink.href ? "text-blue-700" : "text-gray-500"
+            className={`h-full flex justify-center items-center p-6 w-full bg-blue-50 rounded-lg border-blue-500 border-solid border-[1px] hover:bg-blue-50 hover:border-blue-500 lg:border-transparent lg:bg-white lg:p-6 ${
+              pathname === navLink.href
+                ? "text-blue-700 font-extrabold"
+                : "text-gray-500"
             } font-medium`}
             key={navLink.id}
             href={navLink.href}
@@ -70,7 +72,9 @@ function NavbarLinks({
         );
       })}
       {navLinks.map((navLink) => navLink.href).includes("/login") ? null : (
-        <LogoutButton />
+        <div className="lg:ml-6">
+          <LogoutButton />
+        </div>
       )}
     </>
   );
