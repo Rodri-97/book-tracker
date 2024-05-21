@@ -9,6 +9,7 @@ A book tracker web app to help you organize your readings, which you can access 
 - Add books to personal library.
 - Track books as “To Read”, “Currently Reading”, “Did Not Finish”, and “Read”.
 - Rate and review books.
+- Display users' reading data in charts.
 
 ## Motivation
 
