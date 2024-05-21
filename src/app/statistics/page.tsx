@@ -52,7 +52,7 @@ export default async function Statistics({
           <BooksReadByYear year={year} books={userBooks} />
         </div>
 
-        <div className="bg-white p-4 flex flex-col justify-center items-center gap-2">
+        <div className="bg-white p-4 rounded-lg flex flex-col justify-center items-center gap-2">
           <h3 className="font-bold text-xl text-blue-600">Books by status</h3>
           <BooksByStatus bookStatuses={userBooks.map((book) => book.status)} />
         </div>
