@@ -28,7 +28,15 @@ export default function FavoriteAuthors({ authors }: { authors: string[] }) {
 
   const mostFrequentAuthors = findMostFrequentElements(authors, 5);
 
-  const options = {};
+  const options = {
+    scales: {
+      y: {
+        ticks: {
+          precision: 0,
+        },
+      },
+    },
+  };
 
   const data = {
     labels: [...mostFrequentAuthors.map((el) => el[0])],
