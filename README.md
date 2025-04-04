@@ -1,6 +1,6 @@
 ## LitQuest
 
-A book tracker web app to help you organize your readings, which you can access here: https://lit-quest.fly.dev/
+A book tracker web app to help you organize your readings.
 
 ## Features
 
